@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 const carddata = [
   {name: 'Total Doctor', imgsrc: '../../doctor.png'},
@@ -17,7 +18,9 @@ export default function Cards() {
   return (
     <div className="flex flex-wrap p-4 px-10 gap-5 ">
         {/* backend work here */}
-    { carddata.map((item,index) => (<div key={index} className="flex flex-col shadow-lg bg-white p-3 w-80 h-28">
+    { carddata.map((item,index) => (
+        <Link key={index} to="/" className="cursor-pointer">
+            <div  className="flex flex-col shadow-lg bg-white p-3 w-80 h-28">
               <div  className="flex justify-between ">
                 <h1 className="text-bold text-2xl">{item.name}</h1>
                 <img src={item.imgsrc} className="w-16"></img>
@@ -26,8 +29,9 @@ export default function Cards() {
               {/* backend here */}
               <p>2</p>
           </div>
+        </Link>
             
-            )) }  
+     )) }  
            
     </div>
   )
