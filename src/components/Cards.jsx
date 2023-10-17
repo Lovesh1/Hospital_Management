@@ -19,15 +19,17 @@ export default function Cards() {
     <div className="flex flex-wrap p-4 px-10 gap-5 ">
         {/* backend work here */}
     { carddata.map((item,index) => (
-        <Link key={index} to="/" className="cursor-pointer">
-            <div  className="flex flex-col shadow-lg bg-white p-3 w-80 h-28">
+        <Link key={index} to={item.name === 'Active Care Users' ? "../Pages/Active_Users" : "/"} className="cursor-pointer">
+            <div className={`flex flex-col shadow-lg p-3 w-80 h-36
+                               ${item.name === 'Active Care Users' ? 'bg-slate-300' : 'bg-white'}
+                               ${item.name === 'SOS' ? 'bg-red-50' : 'bg-white'}`}>
               <div  className="flex justify-between ">
                 <h1 className="text-bold text-2xl">{item.name}</h1>
                 <img src={item.imgsrc} className="w-16"></img>
                 
               </div>
               {/* backend here */}
-              <p>2</p>
+              <p className="text-slate-800">2</p>
           </div>
         </Link>
             
