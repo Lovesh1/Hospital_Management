@@ -12,5 +12,9 @@ input{
 }
 
 .form input{
-    width: 300px;
+    width: 238px;
+
+}
+.form-radi{
+    border-radius: 20%;
 }

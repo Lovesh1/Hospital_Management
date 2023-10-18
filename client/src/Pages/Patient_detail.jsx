@@ -16,9 +16,9 @@ export default function Patient_detail() {
                 <button className="p-2 border border-b-950 bg-white" onClick={toggle}>PreOperative</button>
             </div>
 
-            <div className="flex justify-between mt-4 form mb-4 flex-wrap">
+            <div className="flex justify-between mt-4 form mb-4 flex-wrap px-2">
             {/* form - 1 */}
-                <div className="bg-white rounded-3xl p-5">
+                <div className="bg-white form-radi  p-10">
                     <div className="flex flex-col">
                         <div className="flex gap-4 mt-5">
                             <div className="flex flex-col">
@@ -98,7 +98,7 @@ export default function Patient_detail() {
 
             {/* form - 2  */}
 
-            <div className="bg-white rounded-3xl p-5">
+            <div className="bg-white form-radi  p-10">
                     <div className="flex flex-col">
                         <div className="flex gap-4 mt-5">
                             <div className="flex flex-col">
@@ -175,10 +175,7 @@ export default function Patient_detail() {
                             <input type="number" className="border-2 border-slate-300 p-2 min-w-full" placeholder="80 kg"></input>
                     </div>
                 </div>
-
-            
-
-            </div>
+        </div>
     </div>
   )
 }
