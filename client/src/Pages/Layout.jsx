@@ -8,7 +8,7 @@ export default function Layout({children}) {
         <Dashmenu/>
         <div className='flex flex-col w-full'>
             <Navbar/>
-            <div className='pt-3 px-5 flex gap-3'>
+            <div>
                     {children}
             </div>
         </div>

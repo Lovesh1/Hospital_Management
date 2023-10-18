@@ -10,3 +10,7 @@ body{
 input{
     width: 89%;
 }
+
+.form input{
+    width: 300px;
+}

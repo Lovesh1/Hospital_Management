@@ -67,4 +67,4 @@ function LoginPage() {
 }
 
 
-export default LoginPage
+export default AuthGuard(LoginPage)

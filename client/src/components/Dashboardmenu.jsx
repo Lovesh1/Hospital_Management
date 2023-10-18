@@ -22,7 +22,7 @@ export default function Dashboardmenu() {
                 <h1 className="pt-2">Dashboard</h1>
             </Link>
         {dashmenuitem.map((item, index) => (
-          <Link to="/" key={index} className="flex gap-2 focus:bg-slate-500 text-xl p-2 hover:opacity-70">
+          <Link to={item.name == 'Users' ? '/patient' : '/'} key={index} className="flex gap-2 focus:bg-slate-500 text-xl p-2 hover:opacity-70">
             <img src={item.imgsrc} alt={item.name}  className="w-9 p-1 bg-[#091733] rounded-md"/>
             <h1 className=" cursor-pointer">{item.name}</h1>
           </Link>
