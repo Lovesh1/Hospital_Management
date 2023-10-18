@@ -10,7 +10,7 @@ export const authenticateJwt = (req, res, next) => {
             if (err) {
                 return res.sendStatus(403);
             }
-            req.headers["email"] = data.email
+            req.headers["hospitalName"] = data.hospitalName
             next()
         });
     } else {
