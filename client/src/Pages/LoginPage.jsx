@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from 'react'
 import axios from 'axios'
-import { AuthGuard } from "../authentication/authGuard"
 
 function LoginPage() {
     let navigate = useNavigate()
@@ -14,6 +13,7 @@ function LoginPage() {
         let response = await axios.post("http://localhost:4000/admin/login", login)
         if (response.data.token) {
             localStorage.setItem("token", response.data.token)
+            localStorage.setItem("token", response.data)
             navigate("/dashboard")
         } else {
             alert(response.data.message)
