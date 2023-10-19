@@ -1,23 +1,64 @@
 import { AuthGuard } from '../authentication/authGuard.jsx'
+import { useState } from 'react'
 import Layout from './Layout.jsx'
 import Patient_detail from './Patient_detail.jsx'
+import CarePlan from './Careplandetail.jsx'
+import Appointment from './Appointdetail.jsx'
 
-// eslint-disable-next-line react-refresh/only-export-components
+
 function Patients(){
+
+  const [activeTab, setActiveTab] = useState('basic'); 
+
+  let activeContent;
+
+  switch (activeTab) {
+    case 'basic':
+      activeContent = <Patient_detail />;
+      break;
+    case 'care':
+      activeContent = <CarePlan />;
+      break;
+    case 'appointments':
+      activeContent = <Appointment/>
+      break;
+    default:
+      activeContent = <Patient_detail />;
+  }
+
   return (
-   <Layout>
-        <div className='flex flex-col'>
-          <div className='flex mb-2'>
-            <button className='p-1 rounded-md border border-b-slate-300 bg-slate-50'>Basic Detail</button>
-            <button className='p-1 rounded-md border border-b-slate-300 bg-slate-200'>Care Plan</button>
-            <button className='p-1 rounded-md border border-b-slate-300 bg-slate-50'>Appointments</button>
-          </div>
-            <Patient_detail/>
-        </div>
-       
-   </Layout>
+    <Layout>
+    <div className='flex flex-col'>
+      <div className='flex mb-2'>
+        <button
+          className={`p-1 rounded-md border ${
+            activeTab === 'basic' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+          }`}
+          onClick={() => setActiveTab('basic')}
+        >
+          Basic Detail
+        </button>
+        <button
+          className={`p-1 rounded-md border ${
+            activeTab === 'care' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+          }`}
+          onClick={() => setActiveTab('care')}
+        >
+          Care Plan
+        </button>
+        <button
+          className={`p-1 rounded-md border ${
+            activeTab === 'appointments' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+          }`}
+          onClick={() => setActiveTab('appointments')}
+        >
+          Appointments
+        </button>
+      </div>
+      {activeContent}
+    </div>
+  </Layout>
   )
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default AuthGuard(Patients)
