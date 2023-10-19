@@ -13,7 +13,7 @@ function LoginPage() {
         let response = await axios.post("http://localhost:4000/admin/login", login)
         if (response.data.token) {
             localStorage.setItem("token", response.data.token)
-            localStorage.setItem("token", response.data)
+            localStorage.setItem("hospitalName", response.data.hospitalName)
             navigate("/dashboard")
         } else {
             alert(response.data.message)
