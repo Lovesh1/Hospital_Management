@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 
 
+
 export default function Nav() {
   return (
     <div className="flex justify-between shadow-lg items-center p-5 bg-white">
-        {/* I don't know if this is coming from back-end or not guess-[yes] */}
-        {/* leave it to you */}
-        <h1 className="text-blue-950 font-semibold text-3xl">Bombay Hospital, Jaipur, Rajasthan </h1>
-        <div className="flex gap-10 mr-28">
-           <Link to='/login'> <img src="../../userlogin.png" className="w-12"></img></Link>
-           <Link to='/'> <img src="../../bell.png" className="w-12"></img></Link>
-            
-        </div>
+      <h1 className="text-blue-950 font-semibold text-3xl">{localStorage.getItem("hospitalName")}</h1>
+      <div className="flex gap-10 mr-28">
+        <Link to='/login'> <img src="../../userlogin.png" className="w-12"></img></Link>
+        <Link to='/'> <img src="../../bell.png" className="w-12"></img></Link>
+
+      </div>
     </div>
   )
 }

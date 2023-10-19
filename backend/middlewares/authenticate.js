@@ -8,9 +8,9 @@ export const authenticateJwt = (req, res, next) => {
     if (token) {
         jwt.verify(token, SECRET, (err, data) => {
             if (err) {
-                return res.sendStatus(403);
+                return res.sendStatus(403)
             }
-            req.headers["hospitalName"] = data.hospitalName
+            req.headers["name"] = data.name
             next()
         });
     } else {

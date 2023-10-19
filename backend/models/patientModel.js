@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 
 const PatientSchemas = new mongoose.Schema({
     name: { type: String, required: true },
-    patientId: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String },
     mobileNumber: { type: String, required: true },
-    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true },
+    gender: { type: String, enum: ['Male', 'Female', 'Other'], required: true, default: "Male" },
     dateOfBirth: { type: Date, required: true },
     pinCode: { type: String, required: true },
     city: { type: String, required: true },
     bloodGroup: { type: String },
-    maritalStatus: { type: String, enum: ['Single', 'Married', 'Divorced', 'Widowed', 'Other'] },
+    maritalStatus: { type: String, enum: ['Single', 'Married', 'Divorced', 'Widowed', 'Other'], default: "Single" },
     height: { type: Number },
     weight: { type: Number },
     bmi: { type: Number },
@@ -24,8 +23,25 @@ const PatientSchemas = new mongoose.Schema({
     allergies: { type: String },
     travelInformation: { type: String },
     ongoingMedications: { type: String },
-    activeStatus: { type: Boolean, default: false }
+    activeStatus: { type: Boolean, default: false },
+    status: {
+        type: String,
+        enum: ['pending', 'active', 'complete'],
+        default: 'pending',
+    },
+    assignedDoctors: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctors',
+        default: "null"
+    }],
+    assignedNurses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Nurses',
+        default: "null"
+    }],
+
 })
+
 
 
 export const Patient = mongoose.model("Patient_Data", PatientSchemas)
