@@ -1,8 +1,8 @@
 import { AuthGuard } from '../authentication/authGuard.jsx'
 import Layout from './Layout.jsx'
-import { Link} from "react-router-dom"
 import Patient_detail from './Patient_detail.jsx'
 
+// eslint-disable-next-line react-refresh/only-export-components
 function Patients(){
   return (
    <Layout>
@@ -19,4 +19,5 @@ function Patients(){
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default AuthGuard(Patients)

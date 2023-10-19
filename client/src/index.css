@@ -11,10 +11,8 @@ input{
     width: 89%;
 }
 
-.form input{
-    width: 238px;
 
-}
 .form-radi{
-    border-radius: 20%;
+    border-radius: 25%;
+    min-width: 575px;
 }
