@@ -11,6 +11,7 @@ export const authenticateJwt = (req, res, next) => {
                 return res.sendStatus(403)
             }
             req.headers["name"] = data.name
+            req.headers["_id"] = data._id
             next()
         });
     } else {

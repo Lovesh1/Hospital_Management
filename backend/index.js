@@ -10,7 +10,7 @@ app.use(express.json())
 app.use("/hospital", hospitalRoutes)
 
 //MongoDB_Connect
-mongoose.connect(process.env.MONGO_STRING, { dbName: "GoMedicx" })
+mongoose.connect(process.env.MONGO_STRING, { dbName: "GoMedicxTest" })
 
 app.listen(process.env.PORT, () => {
     console.log("Connected:", process.env.PORT)

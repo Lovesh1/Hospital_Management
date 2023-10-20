@@ -1,14 +1,18 @@
 import express from "express"
 const router = express.Router()
-import { createHospital, hospitalLogin, patientCreate, showAllHospital, showAllPatients } from "../controllers/Hospital.js"
+import { hospitalLogin, createHospital, createDoctor, createNurse, createPatient, showAllHospital, showAllPatients, showDashboard, showDoctors } from "../controllers/Hospital.js"
 import { authenticateJwt } from "../middlewares/authenticate.js"
 
-
+//Show -> GET // Create-POST  //Login ->POST
 router.post("/login", hospitalLogin)
-router.post("/create-hospital", createHospital)
-
-router.post("/patient-create", authenticateJwt, patientCreate)
 router.get("/checkdata", showAllHospital)
+router.get("/dashboard", authenticateJwt, showDashboard)
 router.get("/show-patients", authenticateJwt, showAllPatients)
+router.get("/show-doctors", authenticateJwt, showDoctors)
+//Creating Hospital and providing the id and password to be given
+router.post("/create-hospital", createHospital)
+router.post("/create-patient", authenticateJwt, createPatient)
+router.post("/create-doctor", authenticateJwt, createDoctor)
+router.post("/create-nurse", authenticateJwt, createNurse)
 
 export default router

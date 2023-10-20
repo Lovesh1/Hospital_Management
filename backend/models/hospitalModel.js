@@ -16,11 +16,11 @@ let hospitalSchema = mongoose.Schema({
     },
     Doctors: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Doctors",
+        ref: "Doctor",
     }],
     Nurses: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Nurses"
+        ref: "Nurse"
     }],
     totalIncome: {
         type: Number,
@@ -32,9 +32,9 @@ let hospitalSchema = mongoose.Schema({
     },
     Patients: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Patient_Data",
+        ref: "Patient",
     }],
 })
 
 
-export const Hospital = mongoose.model("Hopsital", hospitalSchema)
+export const Hospital = mongoose.model("Hospital", hospitalSchema)
