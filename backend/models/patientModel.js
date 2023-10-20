@@ -31,17 +31,19 @@ const PatientSchemas = new mongoose.Schema({
     },
     assignedDoctors: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Doctors',
+        ref: 'Doctor',
         default: "null"
     }],
     assignedNurses: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Nurses',
+        ref: 'Nurse',
         default: "null"
     }],
-
+    hospital: [{
+        type: String
+    }]
 })
 
 
 
-export const Patient = mongoose.model("Patient_Data", PatientSchemas)
+export const Patient = mongoose.model("Patient", PatientSchemas)
