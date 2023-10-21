@@ -41,7 +41,11 @@ const PatientSchemas = new mongoose.Schema({
     }],
     hospital: [{
         type: String
-    }]
+    }],
+    condition: {
+        type: String,
+        enum: ["critical", "serious", "stable"],
+    }
 })
 
 

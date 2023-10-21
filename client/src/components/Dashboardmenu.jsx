@@ -36,7 +36,7 @@ export default function Dashboardmenu() {
         </Link>
 
         {dashmenuitem.map((item, index) => (
-          <Link
+      <Link
             to={item.name === "Log Out" ? "/" : item.name === "Users" ? '/patient' : null}
             key={index}
             className="flex p-4 text-xl hover:bg-slate-500"
