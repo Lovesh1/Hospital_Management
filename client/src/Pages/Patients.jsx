@@ -1,4 +1,3 @@
-import { AuthGuard } from '../authentication/authGuard.jsx'
 import { useState } from 'react'
 import Layout from './Layout.jsx'
 import Patient_detail from './Patient_detail.jsx'
@@ -6,7 +5,7 @@ import CarePlan from './Careplandetail.jsx'
 import Appointment from './Appointdetail.jsx'
 
 
-function Patients(){
+export default function Patients(){
 
   const [activeTab, setActiveTab] = useState('basic'); 
 
@@ -32,7 +31,7 @@ function Patients(){
       <div className='flex mb-2'>
         <button
           className={`p-1 rounded-md border ${
-            activeTab === 'basic' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+            activeTab === 'basic' ? 'bg-slate-400 text-white border border-black' : 'bg-slate-50 border-b-slate-300'
           }`}
           onClick={() => setActiveTab('basic')}
         >
@@ -40,7 +39,7 @@ function Patients(){
         </button>
         <button
           className={`p-1 rounded-md border ${
-            activeTab === 'care' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+            activeTab === 'care' ? 'bg-slate-400 text-white border border-black' : 'bg-slate-50 border-b-slate-300'
           }`}
           onClick={() => setActiveTab('care')}
         >
@@ -48,7 +47,7 @@ function Patients(){
         </button>
         <button
           className={`p-1 rounded-md border ${
-            activeTab === 'appointments' ? 'bg-slate-50 border-b-slate-300' : 'bg-slate-200 border-b-slate-300'
+            activeTab === 'appointments' ? 'bg-slate-400 text-white border border-black' : 'bg-slate-50 border-b-slate-300'
           }`}
           onClick={() => setActiveTab('appointments')}
         >
@@ -61,4 +60,4 @@ function Patients(){
   )
 }
 
-export default AuthGuard(Patients)
+
