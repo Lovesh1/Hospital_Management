@@ -1,51 +1,83 @@
+import { useState, useEffect, useMemo } from 'react';
+
+
 export default function Careplandetail() {
-  const data = [
-    { "name": "Care Plan 1" },
-    { "name": "Vitals 1" },
-    { "name": "Modifications 1" },
-    { "name": "Procedure 1" },
-    { "name": "Diet 1" },
-    { "name": "Therapy 1" },
-    { "name": "Other Test 1" },
-    { "name": "Action 1" },
-  ];
+  const data = useMemo(() => {
+    const initialData = [
+      { "name": "Care Plan 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Vitals 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Modifications 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Procedure 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Diet 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Therapy 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Other Test 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+      { "name": "Action 1", "text": "A book or other written or printed work, regarded in terms of its content rather than its physical form." },
+    ];
+    return initialData;
+  }, []); 
+
+  const itemsPerPage = 3; 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [visibleData, setVisibleData] = useState([]);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setVisibleData(data.slice(startIndex, endIndex));
+  }, [currentPage, data]);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
-    <div className="p-4">
-      <table className="w-full border-collapse border">
-        <thead className="text-center bg-blue-300">
-          <tr className="p-2 text-white">
-            <th className="border">Care Plan</th>
-            <th className="border">Vitals To Test</th>
-            <th className="border">Modifications</th>
-            <th className="border">Procedure</th>
-            <th className="border">Diet</th>
-            <th className="border">Therapy</th>
-            <th className="border">Other Test</th>
-            <th className="border">Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index} className="text-center">
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
-              <td className="border">{item.name}</td>
+    <div className="careplan-container">
+      <div className="table-container">
+        <table className="careplan-table">
+          <thead className='bg-blue-400 text-white'>
+            <tr>
+              <th>Care Plan</th>
+              <th>Vitals To Test</th>
+              <th>Modifications</th>
+              <th>Procedure</th>
+              <th>Diet</th>
+              <th>Therapy</th>
+              <th>Other Test</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
-      <div className="p-4 absolute bottom-0">
-        <button className="p-1 text-blue-950 bg-slate-200 border shadow-lg rounded-md">&lt;&lt;</button>
-        <span className="border p-2 px-3 bg-blue-950 text-white">1</span>
-        <button className="p-1 text-blue-950 bg-slate-200 border shadow-lg rounded-md">&gt;&gt;</button>
+          <tbody>
+            {visibleData.map((item, index) => (
+              <tr key={index} className='border-b-2 border-b-black'>
+                <td>{item.name}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+                <td>{item.text}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="pagination-container">
+        <button className="pagination-button" onClick={handlePrevPage}>&lt;&lt;</button>
+        <span className="pagination-current">{currentPage}</span>
+        <button className="pagination-button" onClick={handleNextPage}>&gt;&gt;</button>
       </div>
     </div>
   );

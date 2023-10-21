@@ -13,10 +13,17 @@ const carddata = [
   {name: 'SOS', imgsrc: '../../sos.png'},
 ]
 
+const containerStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)', 
+  gap: '1rem',
+  padding: '1rem',
+};
+
 export default function Cards() {
   
   return (
-    <div className="flex flex-wrap p-4 px-10 gap-5 ">
+    <div className="grid" style={containerStyle}>
         {/* backend work here */}
     { carddata.map((item,index) => (
         <Link key={index} to={item.name === 'Active Care Users' ? "../Pages/Active_Users" : "/"} className="cursor-pointer">
