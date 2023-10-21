@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Toggle from "./Toggle.jsx";
 
 const dashmenuitem = [
-  { name: 'Users', imgsrc: '../../patients.png' },
   { name: 'Specialities', imgsrc: '../../patients.png' },
   { name: 'Diagnoses', imgsrc: '../../patients.png' },
   { name: 'Requests', imgsrc: '../../patients.png' },
@@ -9,29 +9,44 @@ const dashmenuitem = [
   { name: 'Medicines', imgsrc: '../../patients.png' },
   { name: 'Manage Account', imgsrc: '../../patients.png' },
   { name: 'Log Out', imgsrc: '../../logout.png' },
-]
+];
+
+const dropdown = [
+  { name: 'Patient' },
+  { name: 'Doctor' },
+  { name: 'Nurse' },
+];
 
 export default function Dashboardmenu() {
   return (
-    <div className=" bg-blue-950 text-white w-64 items-center min-h-screen">
-      <Link> <img src="../../Logo2.png" className=" bg-slate-700 p-2"></img></Link>
+    <div className="bg-blue-950 text-white min-h-screen w-auto max-w-xs">
+      <Link to="/" className="flex p-4 text-xl">
+        <img src="../../Logo2.png" alt="Logo" className="p-2 bg-slate-700 w-[250px]" />
+      </Link>
 
-      <ul className="flex flex-col mt-5">
-        <Link to="/" className="flex gap-2 p-2 text-xl mb-2 cursor-pointer focus:bg-slate-500 hover:opacity-70">
-          <img src="../../dashboard.png" className="w-9 p-1"></img>
+      <div className="flex flex-col">
+        <Link to="/" className="flex p-4 text-xl hover:bg-slate-500">
+          <img src="../../dashboard.png" alt="Dashboard" className="w-9 p-1" />
           <h1 className="pt-2">Dashboard</h1>
         </Link>
+
+        <Link to="/" className="flex p-4 text-xl hover:bg-slate-500">
+          <img src='../../patients.png' alt="Patients" className="w-9 p-1" />
+          <Toggle drop={dropdown} />
+        </Link>
+
         {dashmenuitem.map((item, index) => (
-          <Link to={item.name == "Log Out" ? "/" : item.name == "Users" ? "/patient" : null} key={index} className="flex gap-2 focus:bg-slate-500 text-xl p-2 hover:opacity-70" onClick={() => {
-            localStorage.removeItem("token")
-          }}>
-            <>
-              <img src={item.imgsrc} alt={item.name} className="w-9 p-1 bg-[#091733] rounded-md" />
-              <h1 className=" cursor-pointer">{item.name}</h1>
-            </>
+      <Link
+            to={item.name === "Log Out" ? "/" : item.name === "Users" ? '/patient' : null}
+            key={index}
+            className="flex p-4 text-xl hover:bg-slate-500"
+            onClick={() => { localStorage.removeItem("token") }}
+          >
+            <img src={item.imgsrc} alt={item.name} className="w-9 p-1 bg-[#091733] rounded-md" />
+            <h1 className="cursor-pointer">{item.name}</h1>
           </Link>
         ))}
-      </ul>
+      </div>
     </div>
-  )
+  );
 }

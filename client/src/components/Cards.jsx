@@ -15,6 +15,13 @@ const carddata = [
   { name: 'SOS', imgsrc: '../../sos.png', count: 0 }
 ]
 
+const containerStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)', 
+  gap: '1rem',
+  padding: '1rem',
+};
+
 export default function Cards() {
 
   let [countData, setCountData] = useState({})
@@ -31,9 +38,10 @@ export default function Cards() {
     init()
   },[])
   return (
-    <div className="flex flex-wrap p-4 px-10 gap-5 ">
-      {/* backend work here */}
-      {carddata.map((item, index) => (
+
+    <div className="grid" style={containerStyle}>
+        {/* backend work here */}
+    { carddata.map((item,index) => (
         <Link key={index} to={item.name === 'Active Care Users' ? "../Pages/Active_Users" : "/"} className="cursor-pointer">
           <div className={`flex flex-col shadow-lg p-3 w-80 h-36 ${item.name === 'Active Care Users' ? 'bg-slate-300' : 'bg-white'} ${item.name === 'SOS' ? 'bg-red-50' : 'bg-white'}`}>
             <div className="flex justify-between ">

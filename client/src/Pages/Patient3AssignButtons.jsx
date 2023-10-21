@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Dropmenu from '../components/Dropdown.jsx'
 
 export function Doctor() {
     const [doc, setdoc] = useState(false)
@@ -8,16 +7,19 @@ export function Doctor() {
 
     const doclick = () => {
         setdoc(!doc)
+       
     }
     const careclick = () => {
         settaker(!taker)
+
     }
     const tagclick = () => {
         settag(!tag)
+        
     }
 
   return (
-    <div className="flex gap-4 absolute left-10 flex-wrap">
+    <div className="flex gap-4 absolute left-10 flex-wrap h-[80px]">
         {doc ? (
             <div className="w-32">
                 <label className="text-slate-400 text-[12px]">Assign Doctor</label>
@@ -39,10 +41,10 @@ export function Doctor() {
             <button className="px-3 bg-blue-950 text-white rounded-md" onClick={careclick}>Assign Doctor</button>
             </div>
         )}
-        
-    
-    {tag ? (
-            <button className="px-5 bg-pink-300 text-blue-950 font-semibold rounded-md my-5">Normal</button>
+
+    {tag ? (<div className="mt-5">
+            <button className="px-5 bg-pink-300 text-blue-950 font-semibold rounded-md">Normal</button>
+            </div>
         ):(
             <div>
             <button className="px-3 border-2 border-blue-950 bg-white rounded-md" onClick={tagclick}>Add Tags</button>
@@ -54,28 +56,36 @@ export function Doctor() {
 }
 
 export function Admit(){
-        const [click, setclick] = useState(false);
 
-        const handleclick = () => {
-            setclick(!click)
-        }
+    const [admissionStatus, setAdmissionStatus] = useState("Admit");
+
+    const handleAdmissionStatusChange = (e) => {
+      setAdmissionStatus(e.target.value);
+    };
+
     return(
 
         <div className="flex gap-4 absolute right-10">
-          <div>
-             <button className="px-3 bg-blue-950 text-white">Admit</button>
-          </div>
-            <div className="relative">
-            <button className="px-3  bg-white border-2 border-blue-950" onClick={handleclick}>PreOperative
-                <span className=" text-blue-950">
-                     ▼
-                 </span>
-            </button>
-                {click && (
-                    <div className="absolute border border-slate-500 bg-blue-200 w-[136px] justify-center">
-                        <Dropmenu/>
-                    </div>
-                )}
+
+            <div>
+            <select
+                className={`px-3 rounded-md outline-none ${
+                admissionStatus === "Admitted" ? "bg-slate-500 text-white" : "bg-blue-950 text-white"
+                }`}
+                onChange={handleAdmissionStatusChange}
+            >
+                <option value="Admit">Admit</option>
+                <option value="Admitted">Admitted</option>
+            </select>
+            </div>
+          
+            <div>
+                 <select className="px-3  bg-white border-4 border-blue-950 outline-none rounded-md">
+                    <option >PreOperative</option>
+                    <option >Surgery</option>
+                    <option >Severe</option>
+                 </select>
+           
             </div>
     </div>
     )
