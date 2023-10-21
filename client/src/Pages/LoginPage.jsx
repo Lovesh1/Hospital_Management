@@ -10,10 +10,10 @@ function LoginPage() {
     })
 
     async function sendData() {
-        let response = await axios.post("http://localhost:4000/admin/login", login)
+        let response = await axios.post("http://localhost:4000/hospital/login", login)
         if (response.data.token) {
             localStorage.setItem("token", response.data.token)
-            localStorage.setItem("hospitalName", response.data.hospitalName)
+            localStorage.setItem("name", response.data.name)
             navigate("/dashboard")
         } else {
             alert(response.data.message)

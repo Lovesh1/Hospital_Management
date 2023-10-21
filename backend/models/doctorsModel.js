@@ -55,3 +55,6 @@ const doctorSchema = mongoose.Schema({
 });
 
 export const Doctor = mongoose.model("Doctor", doctorSchema);
+
+
+//Degree and Training 

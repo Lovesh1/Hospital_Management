@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const nurseSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
+        
     },
     lastName: {
         type: String,
-        required: true,
+        
     },
     dateOfBirth: {
         type: Date,
@@ -18,12 +18,12 @@ const nurseSchema = mongoose.Schema({
     },
     licenseNumber: {
         type: String,
-        required: true,
+        
     },
     hospital: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Hospital",
-        required: true,
+        
     }],
     department: {
         type: String,
@@ -31,11 +31,11 @@ const nurseSchema = mongoose.Schema({
     contact: {
         email: {
             type: String,
-            required: true,
+            
         },
         phone: {
             type: String,
-            required: true,
+            
         },
     },
     address: {
@@ -65,12 +65,12 @@ const nurseSchema = mongoose.Schema({
     shiftSchedule: [{
         day: {
             type: String,
-            required: true,
+            
         },
         shift: {
             type: String,
             enum: ["Morning", "Afternoon", "Night"],
-            required: true,
+            
         },
     }],
     trainingAndCertifications: [{
@@ -87,3 +87,6 @@ const nurseSchema = mongoose.Schema({
 });
 
 export const Nurse = mongoose.model("Nurse", nurseSchema);
+
+
+//doctor-> nurse 

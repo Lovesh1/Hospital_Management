@@ -22,7 +22,7 @@ export default function Dashboardmenu() {
           <h1 className="pt-2">Dashboard</h1>
         </Link>
         {dashmenuitem.map((item, index) => (
-          <Link to={item.name == "Log Out" ? "/" : null} key={index} className="flex gap-2 focus:bg-slate-500 text-xl p-2 hover:opacity-70" onClick={() => {
+          <Link to={item.name == "Log Out" ? "/" : item.name == "Users" ? "/patient" : null} key={index} className="flex gap-2 focus:bg-slate-500 text-xl p-2 hover:opacity-70" onClick={() => {
             localStorage.removeItem("token")
           }}>
             <>

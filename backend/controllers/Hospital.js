@@ -25,10 +25,86 @@ export const showAllPatients = async (req, res) => {
     let searchData = await Hospital.findOne({ name: req.headers.name })
     res.json(searchData.Patients)
 }
-export const showDashboard = async (req, res) => {
-    let hospitalData = await Hospital.findOne({ name: req.headers.name })
-    res.json({ "Total Doctor": hospitalData.Doctors.length, "Total Patient": hospitalData.Patients.length, 'Total Nurse': hospitalData.Nurses.length })
+
+export const showDoctors = async (req, res) => {
+    let searched = await Hospital.findById(req.headers._id)
+    if (searched) {
+        const doctorPromises = searched.Doctors.map((doctorId) => {
+            return Doctor.findById(doctorId).select("firstName lastName")
+        });
+        const searchedData = await Promise.all(doctorPromises)
+
+        res.json({ searchedData });
+    } else {
+        res.json("Hospital is not valid")
+    }
 }
+export const showNurses = async (req, res) => {
+    let searched = await Hospital.findById(req.headers._id)
+    if (searched) {
+        const nursePromises = searched.Nurses.map((nurseId) => {
+            return Nurse.findById(nurseId).select("firstName lastName")
+        })
+        const searchedData = await Promise.all(nursePromises)
+        res.json({ Nurses: searchedData })
+    }
+}
+
+export const showDashboard = async (req, res) => {
+    try {
+        const searched = await Hospital.findById(req.headers._id);
+        if (!searched) {
+            return res.status(404).json({ error: 'Hospital not found' });
+        }
+
+        const patientIds = searched.Patients;
+        const dataFetch = await Patient.find({ _id: { $in: patientIds } })
+            .select('activeStatus status')
+
+        const dashboardData = dataFetch.reduce(
+            (acc, patient) => {
+                if (patient.activeStatus) {
+                    acc.ActiveCareUsers++;
+                }
+                if (patient.status === 'active') {
+                    acc.ActiveRequest++;
+                }
+                if (patient.status === 'complete') {
+                    acc.CompleteRequest++;
+                }
+                if (patient.status === 'pending') {
+                    acc.PendingRequest++;
+                }
+                return acc;
+            },
+            {
+                ActiveRequest: 0,
+                ActiveCareUsers: 0,
+                CompleteRequest: 0,
+                PendingRequest: 0,
+            }
+        );
+
+        const response = {
+            'Total Doctor': searched.Doctors.length,
+            'Total Patient': searched.Patients.length,
+            'Total Nurse': searched.Nurses.length,
+            'Pending Request': dashboardData.PendingRequest,
+            'Complete Request': dashboardData.CompleteRequest,
+            'Active Request': dashboardData.ActiveRequest,
+            'Active Care Users': dashboardData.ActiveCareUsers,
+        };
+
+        res.json(response);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+
+
 
 //Creation Starts Here
 export const createHospital = async (req, res) => {
@@ -42,14 +118,16 @@ export const createPatient = async (req, res) => {
         await createPatient.save();
         const searched = await Hospital.findById(req.headers._id);
         if (searched) {
-            searched.Patients.push(createDoctor._id)
+            searched.Patients.push(createPatient._id)
             await searched.save()
             createPatient.hospital.push(req.headers._id)
-            await createDoctor.save()
+            await createPatient.save()
+            res.json({ createdPatient: createPatient._id })
         } else {
             res.status(404).json({ message: "Hospital not found" });
         }
     } catch (err) {
+        console.error(err)
         res.status(500).json({ error: "Error while connecting" });
     }
 }
@@ -86,19 +164,4 @@ export const createNurse = async (req, res) => {
         await createNurse.save()
     }
     res.json({ message: createNurse._id })
-}
-
-
-export const showDoctors = async (req, res) => {
-    let searched = await Hospital.findById(req.headers._id)
-    if (searched) {
-        const doctorPromises = searched.Doctors.map((doctorId) => {
-            return Doctor.findById(doctorId).select("firstName lastName")
-        });
-        const searchedData = await Promise.all(doctorPromises)
-
-        res.json({ searchedData });
-    } else {
-        res.json("Hospital is not valid")
-    }
 }
