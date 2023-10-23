@@ -56,27 +56,14 @@ export function Doctor() {
 }
 
 export function Admit() {
-
-
     return (
 
         <div className="flex gap-4 absolute right-10">
-
             <div>
-                {/* <select
-                className={`px-3 rounded-md outline-none ${
-                admissionStatus === "Admitted" ? "bg-slate-500 text-white" : "bg-blue-950 text-white"
-                }`}
-                onChange={handleAdmissionStatusChange}
-            >
-                <option value="Admit">Admit</option>
-                <option value="Admitted">Admitted</option>
-            </select> */}
-                <button className="px-3 rounded-md outline-none bg-blue-950 text-white">Admit</button>
+                <button className="px-3 outline-none bg-blue-950 text-white">Admit</button>
             </div>
-
             <div>
-                <select className="px-3  bg-white border-4 border-blue-950 outline-none rounded-md">
+                <select className="px-3  bg-white border border-blue-950 outline-none rounded-md">
                     <option >PreOperative</option>
                     <option >Surgery</option>
                     <option >Severe</option>
