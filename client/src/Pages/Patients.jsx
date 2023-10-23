@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import Layout from './Layout.jsx'
 import Patient_detail from './Patient_detail.jsx'
 import CarePlan from './Careplandetail.jsx'
 import Appointment from './Appointdetail.jsx'
-
+import Layout from './Layout.jsx'
 
 export default function Patients(){
 
@@ -56,7 +55,7 @@ export default function Patients(){
       </div>
       {activeContent}
     </div>
-  </Layout>
+    </Layout>
   )
 }
 

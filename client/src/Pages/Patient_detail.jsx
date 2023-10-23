@@ -11,10 +11,8 @@ export default function Patient_detail() {
                     <img src="../../patient-user.png"></img>
                     <Admit/>
             </div>
-           
-            <div className="flex gap-4 flex-wrap mb-3">
             <FormDetails/>
-        </div>
+       
     </div>
   )
 }
