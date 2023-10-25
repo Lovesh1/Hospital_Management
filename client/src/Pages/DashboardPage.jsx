@@ -22,7 +22,7 @@ const containerStyle = {
   padding: '1rem',
 };
 
-export default function DashboardPage() {
+function DashboardPage() {
 
   let [countData, setCountData] = useState({})
   useEffect(() => {
@@ -36,10 +36,10 @@ export default function DashboardPage() {
     }
     init()
   }, [])
-  
+
   return (
-        <div className="grid" style={containerStyle}>
-          {/* card rendering */}
+    <div className="grid" style={containerStyle}>
+      {/* card rendering */}
       {/* backend work here */}
       {carddata.map((item, index) => (
         <Link key={index} to={item.name === 'Active Care Users' ? "../Pages/Active_Users" : "/"} className="cursor-pointer">
@@ -56,6 +56,9 @@ export default function DashboardPage() {
       ))}
 
     </div>
-   
+
   );
 }
+
+
+export default DashboardPage
