@@ -34,23 +34,15 @@ export default function Forms() {
         const value = e.target.value;
 
         setData((prevData) => ({ ...prevData, [field]: value }));
-
-        if (field === 'height' || field === 'weight') {
-            if (!isNaN(value) && value !== "") {
-                calculateBMI(value, field);
-            } else {
-               
-                setData((prevData) => ({ ...prevData, bmi: "" }));
-            }
-        }
+    
     };
 
     const calculateBMI = () => {
         const heightInMeters = data.height / 100;
         const weight = parseFloat(data.weight);
         const bmi = weight / (heightInMeters ** 2);
-            setData((prevData) => ({ ...prevData, bmi: bmi.toFixed(2) }));
-       
+        setData((prevData) => ({ ...prevData, bmi: bmi.toFixed(2) }));
+
     };
 
     return (
@@ -106,10 +98,10 @@ export default function Forms() {
                     <div className="flex mt-3 gap-4">
                         <div className="flex flex-col">
                             <label className="text-slate-500">Gender</label>
-                            
+
                             <select className="border p-2 outline-none min-w-[210px] text-slate-400"
-                                     value={data.gender}
-                                     onChange={(e) => handleChange(e, "gender")} >
+                                value={data.gender}
+                                onChange={(e) => handleChange(e, "gender")} >
                                 <option className="text-slate-600">Male</option>
                                 <option className="text-slate-600">Female</option>
                             </select>
@@ -155,8 +147,8 @@ export default function Forms() {
                         <div className="flex flex-col">
                             <label className="text-slate-500">Blood Group</label>
                             <select className="border p-2 outline-none min-w-[210px] text-slate-400"
-                                    value={data.bloodGroup}
-                                    onChange={(e) => handleChange(e, "bloodGroup")} >
+                                value={data.bloodGroup}
+                                onChange={(e) => handleChange(e, "bloodGroup")} >
 
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
@@ -167,15 +159,15 @@ export default function Forms() {
                                 <option value="O+">O+</option>
                                 <option value="O-">O-</option>
                             </select>
-                           
+
                         </div>
 
                         <div className="flex flex-col">
                             <label className="text-slate-500">Martial Status</label>
-                    
+
                             <select className="border p-2 outline-none min-w-[210px] text-slate-400"
-                                    value={data.maritalStatus}
-                                    onChange={(e) => handleChange(e, "maritalStatus")}>
+                                value={data.maritalStatus}
+                                onChange={(e) => handleChange(e, "maritalStatus")}>
                                 <option>Married</option>
                                 <option>Single</option>
                             </select>
@@ -275,8 +267,7 @@ export default function Forms() {
                             type="text"
                             className="border p-2 w-full outline-none"
                             placeholder="High fever,  Cold"
-                            value={data.selectSymptoms.join(',')}
-                            onChange={(e) => handleChange(e, "selectSymptoms")}
+                            onChange={(e) => setData({ ...data, selectSymptoms: e.target.value.split(",") })}
                         />
                     </div>
 
@@ -294,25 +285,25 @@ export default function Forms() {
                     <div className="flex flex-col mt-1">
                         <label className="text-slate-500">Any Other Symptoms</label>
                         <select
-                                className="border p-2 w-full outline-none text-slate-400"
-                                value={data.otherSymptoms}
-                                onChange={(e) => handleChange(e, "otherSymptoms")}
-                            >
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
+                            className="border p-2 w-full outline-none text-slate-400"
+                            value={data.otherSymptoms}
+                            onChange={(e) => handleChange(e, "otherSymptoms")}
+                        >
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
                     </div>
 
                     <div className="flex flex-col mt-1">
                         <label className="text-slate-500">Allergies (If Any)</label>
                         <select
-                                className="border p-2 w-full outline-none text-slate-400"
-                                value={data.allergies}
-                                onChange={(e) => handleChange(e, "allergies")}
-                            >
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
+                            className="border p-2 w-full outline-none text-slate-400"
+                            value={data.allergies}
+                            onChange={(e) => handleChange(e, "allergies")}
+                        >
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
                     </div>
 
                     <div className="flex flex-col mt-1">
@@ -329,13 +320,13 @@ export default function Forms() {
                     <div className="flex flex-col mt-1">
                         <label className="text-slate-500">Ongoing Medications</label>
                         <select
-                                className="border p-2 w-full outline-none text-slate-400"
-                                value={data.ongoingMedications}
-                                onChange={(e) => handleChange(e, "ongoingMedications")}
-                            >
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
+                            className="border p-2 w-full outline-none text-slate-400"
+                            value={data.ongoingMedications}
+                            onChange={(e) => handleChange(e, "ongoingMedications")}
+                        >
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
                     </div>
 
                 </div>

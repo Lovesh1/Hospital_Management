@@ -13,8 +13,7 @@ export default function Toggle({drop}) {
     };
 
     return (
-        <select className="outline-none bg-blue-950"  value={option}>
-            {/* eslint-disable-next-line react/prop-types */}
+        <select className="outline-none bg-blue-950"  defaultValue={option}>
             {drop.map((item , idx)=> {
                 return (
                     (<option key={idx} onChange={handleChange} >{item.name}</option>)
