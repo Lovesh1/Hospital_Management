@@ -96,5 +96,16 @@ body {
 
   }
 
+  .custom-container {
+    display: flex;
+    padding: 16px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .custom-container:hover select{
+    background-color: #475569;
+  }
+  
   
   
