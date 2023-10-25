@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import Layout from './Layout.jsx'
 import Patient_detail from './Patient_detail.jsx'
 import CarePlan from './Careplandetail.jsx'
 import Appointment from './Appointdetail.jsx'
-
 
 export default function Patients(){
 
@@ -26,7 +24,6 @@ export default function Patients(){
   }
 
   return (
-    <Layout>
     <div className='flex flex-col'>
       <div className='flex mb-2'>
         <button
@@ -56,7 +53,6 @@ export default function Patients(){
       </div>
       {activeContent}
     </div>
-  </Layout>
   )
 }
 
