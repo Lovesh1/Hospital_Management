@@ -6,18 +6,22 @@ export const AuthGuard = (WrappedComponent) => {
 
     const GuardedComponent = (props) => {
         const [isAuthenticated, setAuthentaction] = useState(false);
+        console.log(isAuthenticated)
+        console.log(setAuthentaction)
 
         useEffect(() => {
             async function getToken() {
                 const token = await localStorage.getItem("token");
                 if (token) {
                     setAuthentaction(true);
+                    
                 }
             }
             getToken();
         }, []);
 
         if (isAuthenticated) {
+            
             return <WrappedComponent {...props} />;
         } else {
             return (
