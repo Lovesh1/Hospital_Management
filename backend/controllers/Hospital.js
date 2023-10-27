@@ -133,15 +133,15 @@ export const createPatient = async (req, res) => {
 
 export const createDoctor = async (req, res) => {
     try {
-        const createDoctor = new Doctor(req.body);
-        await createDoctor.save();
         const searched = await Hospital.findById(req.headers._id);
         if (searched) {
+            const createDoctor = new Doctor(req.body);
+            await createDoctor.save();
             searched.Doctors.push(createDoctor._id);
             await searched.save();
             createDoctor.hospital.push(req.headers._id);
             await createDoctor.save();
-            res.json({ message: createDoctor._id });
+            res.json({ message: "Doctor has been created" });
         } else {
             res.status(404).json({ error: "Hospital not found" });
         }

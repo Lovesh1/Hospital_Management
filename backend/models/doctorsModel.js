@@ -3,11 +3,9 @@ import mongoose from "mongoose";
 const doctorSchema = mongoose.Schema({
     firstName: {
         type: String,
-
     },
     lastName: {
         type: String,
-
     },
     hospital: [{
         type: mongoose.Schema.Types.ObjectId
