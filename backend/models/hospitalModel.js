@@ -34,6 +34,28 @@ let hospitalSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Patient",
     }],
+    Floor: [
+        {
+            floorNumber: {
+                type: Number,
+            },
+            ward:
+            {
+                type: String,
+            },
+            rooms: {
+                type: String,
+            },
+            beds: {
+                bedNumber: {
+                    type: String,
+                },
+                isOccupied: {
+                    type: Boolean
+                }
+            }
+        }
+    ]
 })
 
 

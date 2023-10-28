@@ -35,6 +35,7 @@ function Doctor() {
     }
 
     let specialities = [
+        "",
         "Anesthesiology",
         "Cardiology",
         "Dermatology",
@@ -151,13 +152,17 @@ function Doctor() {
                             ...data, specialty: [...data.specialty, e.target.value]
                         })}>
                             {specialities.map((x, index) => {
-                                return (
-                                    <option key={index}>
-                                        {x}
-                                    </option>
-                                )
+                                if (!data.specialty.includes(x)) {
+                                    return (
+                                        <option key={index}>
+                                            {x}
+                                        </option>
+                                    );
+                                }
+                                return null; 
                             })}
                         </select>
+                        {data.specialty.join(",")}
                     </div>
 
                 </div>
