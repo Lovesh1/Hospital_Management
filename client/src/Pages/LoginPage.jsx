@@ -8,29 +8,27 @@ function LoginPage() {
         email: "",
         password: ""
     })
-
     async function sendData() {
-        let response = await axios.post("http://localhost:4000/hospital/login", login)
-        if (response.data.token) {
-            localStorage.setItem("token", response.data.token)
-            localStorage.setItem("name", response.data.name)
-            navigate("/dashboard")
-        } else {
-            alert(response.data.message)
+        try {
+            let response = await axios.post("http://localhost:4000/hospital/login", login)
+            if (response.data.token) {
+                localStorage.setItem("token", response.data.token)
+                localStorage.setItem("name", response.data.name)
+                navigate("/dashboard")
+            } else {
+                alert(response.data.message)
+            }
+        } catch (err) {
+            console.error(err)
         }
     }
-
     return (
         <div className=" max-w-lg p-3 mx-auto my-10">
             <Link to={"/"}><img src="../../Logo2.png" alt="LOGO" className=" w-40 mx-auto"></img></Link>
-
-
             <div className="shadow-lg p-8 bg-white mt-7">
                 <h1 className="text-center font-semibold text-2xl">Welcome Back</h1>
                 <p className="text-center text-slate-400">Enter your credential to access your Account</p>
-
                 <div className=" flex flex-col gap-3 mt-5" >
-
                     {/* Email */}
                     <label htmlFor="email">E-mail Address</label>
                     <div className="flex bg-blue-50 rounded-md">
@@ -41,9 +39,7 @@ function LoginPage() {
                             onChange={(e) => { setLogin({ ...login, email: e.target.value }) }}
                         >
                         </input>
-
                     </div>
-
                     {/* password */}
                     <label htmlFor="pass">Password</label>
                     <div className="flex bg-blue-50 rounded-md">
@@ -55,12 +51,9 @@ function LoginPage() {
                             onChange={(e) => { setLogin({ ...login, password: e.target.value }) }}
                         >
                         </input>
-
                     </div>
-
                     <button className="p-2 mt-4 rounded-md bg-blue-950 text-white hover:opacity-90" onClick={sendData}>Submit</button>
                 </div>
-
             </div>
         </div >
     )

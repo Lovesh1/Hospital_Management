@@ -4,11 +4,11 @@ import Layout from "./Pages/Layout.jsx"
 
 export default function App() {
   return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Layout />} />
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Layout />} />
+      </Routes>
+    </Router>
   )
 }

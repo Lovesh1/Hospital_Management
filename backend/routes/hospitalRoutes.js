@@ -5,7 +5,7 @@ import { authenticateJwt } from "../middlewares/authenticate.js"
 
 //Show -> GET // Create-POST  //Login ->POST
 router.post("/login", hospitalLogin)
-router.get("/checkdata", showAllHospital)
+router.get("/show", showAllHospital)
 router.get("/dashboard", authenticateJwt, showDashboard)
 router.get("/show-patients", authenticateJwt, showAllPatients)
 router.get("/show-doctors", authenticateJwt, showDoctors)
